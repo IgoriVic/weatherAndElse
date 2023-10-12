@@ -1,0 +1,104 @@
+.main-wrapper {
+  display: flex;
+  border: ridge;
+  border-color: rgb(70, 67, 237);
+  border-radius: 8px;
+  background-color: black;
+  height: 370px;
+
+  .dropdown-wrapper {
+    label {
+      color: bisque;
+      font-size: 17px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    #select-planet {
+      width: 100px;
+      border: 3px solid rgba(128, 150, 247, 0.852);
+      border-radius: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      color: bisque;
+      background-color: #403e3e;
+
+      option {
+        font-size: 15px;
+        font-weight: 600;
+        color: bisque;
+        background-color: #403e3e;
+      }
+    }
+
+    .text-scroll {
+      height: 335px;
+      width: 240px;
+      color: bisque;
+      padding-left: 5px;
+      margin-left: 3px;
+      margin-top: 5px;
+      border: 1.5px solid bisque;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .text {
+        // #scroll-text {
+        height: 100%;
+        text-align: center;
+
+        /* animation properties */
+        -moz-transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+
+        -moz-animation: my-animation 5s linear infinite;
+        -webkit-animation: my-animation 5s linear infinite;
+        animation: my-animation 15s linear infinite;
+        // }
+
+        /* for Chrome */
+        @-webkit-keyframes my-animation {
+          from {
+            -webkit-transform: translateY(100%);
+          }
+          to {
+            -webkit-transform: translateY(-100%);
+          }
+        }
+
+        @keyframes my-animation {
+          from {
+            -moz-transform: translateY(100%);
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+          }
+          to {
+            -moz-transform: translateY(-100%);
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+          }
+        }
+      }
+    }
+  }
+
+  .planet-display {
+    display: flex;
+    align-items: center;
+    border: 2px;
+    border-color: rgb(70, 67, 237);
+    width: 500px;
+    height: 370px;
+
+    .planet {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      img {
+        width: 350px;
+      }
+    }
+  }
+}
