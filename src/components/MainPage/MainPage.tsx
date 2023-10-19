@@ -3,6 +3,7 @@ import './MainPage.scss';
 import axios from 'axios';
 import { WeatherData } from '../Interfaces/interfaces';
 import PlanetsDropdown from '../FuncComponents/PlanetsDropdown/PlanetDropdown';
+import { log } from 'console';
 
 // add an images for weather
 
@@ -14,12 +15,18 @@ interface DataItem {
 const MainPage: React.FC = () => {
   const [apiData, setApiData] = useState<DataItem | null>(null);
   const [weathData, setWeathData] = useState<WeatherData | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const sunriseF = weathData?.sys.sunrise;
   const sunsetS = weathData?.sys.sunset;
 
   const sunriseTime = sunriseF && new Date(sunriseF * 1000).toLocaleTimeString();
   const sunsetTime = sunsetS && new Date(sunsetS * 1000).toLocaleTimeString();
+
+  const handleClick = () => {
+    setIsModalVisible(true);
+    console.log(isModalVisible, 'is')
+  }
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -57,15 +64,6 @@ const MainPage: React.FC = () => {
 
   return (
     <div className='data-wrapper'>
-      {/* <div className='main-div'>
-        <h1>My Data:</h1> */}
-        {/* {apiData && (
-          <div className='answer'>
-            <p>Answer: {apiData.answer}</p>
-            <img src={apiData.image} alt='gif'></img>
-          </div>
-        )} */}
-      {/* </div> */}
       <div className='weather-wrapper'>
         {weathData && (
           <div className='weather-response'>
@@ -79,6 +77,9 @@ const MainPage: React.FC = () => {
             <p>Temprerature: {weathData.main.temp}</p>
             <p>Sunrise Time: {sunriseTime}</p>
             <p>Sunset Time: {sunsetTime}</p>
+            <div className='day-night-graph'>
+              <button onClick={handleClick}>Day / Night Graphique</button>
+            </div>
           </div>
         )}
       </div>
