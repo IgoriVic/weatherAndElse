@@ -3,7 +3,7 @@ import './MainPage.scss';
 import axios from 'axios';
 import { WeatherData } from '../Interfaces/interfaces';
 import PlanetsDropdown from '../FuncComponents/PlanetsDropdown/PlanetDropdown';
-import { log } from 'console';
+import DayNightModal from '../FuncComponents/DayNightModal/DayNightModal';
 
 // add an images for weather
 
@@ -15,7 +15,7 @@ interface DataItem {
 const MainPage: React.FC = () => {
   const [apiData, setApiData] = useState<DataItem | null>(null);
   const [weathData, setWeathData] = useState<WeatherData | null>(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sunriseF = weathData?.sys.sunrise;
   const sunsetS = weathData?.sys.sunset;
@@ -23,9 +23,12 @@ const MainPage: React.FC = () => {
   const sunriseTime = sunriseF && new Date(sunriseF * 1000).toLocaleTimeString();
   const sunsetTime = sunsetS && new Date(sunsetS * 1000).toLocaleTimeString();
 
-  const handleClick = () => {
-    setIsModalVisible(true);
-    console.log(isModalVisible, 'is')
+  const openModal = () => {
+    setIsModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   }
 
   useEffect(() => {
@@ -78,7 +81,11 @@ const MainPage: React.FC = () => {
             <p>Sunrise Time: {sunriseTime}</p>
             <p>Sunset Time: {sunsetTime}</p>
             <div className='day-night-graph'>
-              <button onClick={handleClick}>Day / Night Graphique</button>
+              <button onClick={openModal}>Day / Night Graphique</button>
+              <DayNightModal isOpen={isModalOpen} onClose={closeModal}>
+                <h2>MUI title</h2>
+                <p>Content</p>
+              </DayNightModal>
             </div>
           </div>
         )}
